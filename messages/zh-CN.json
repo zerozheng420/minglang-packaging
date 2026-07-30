@@ -19,6 +19,10 @@
     "footer_wechat": "微信",
     "footer_whatsapp": "WhatsApp",
     "footer_quickLinks": "快速链接",
+    "footer_platforms": "贸易平台",
+    "footer_1688": "1688 店铺",
+    "footer_alibaba": "阿里巴巴国际站",
+    "footer_platforms_desc": "访问我们的B2B平台店铺",
     "footer_copyright": "© 2026 深圳市明朗包装制品有限公司 版权所有",
     "footer_companies": "旗下公司：深圳市醒龙包装制品有限公司 | 深圳市汇莉达包装制品有限公司",
     "language_zhCN": "简体中文",
@@ -74,10 +78,12 @@
     "industries_brand": "品牌定制",
     "cta_title": "准备好开始您的包装项目了吗？",
     "cta_subtitle": "无论是小批量定制还是大批量生产，我们都能为您提供最优质的包装解决方案",
-    "cta_button": "立即咨询"
+    "cta_button": "立即咨询",
+    "video_title": "工厂实拍"
   },
   "products": {
     "title": "产品中心",
+    "search_placeholder": "按名称或材质搜索...",
     "filter_all": "全部",
     "filter_category": "按分类筛选",
     "empty": "暂无产品",

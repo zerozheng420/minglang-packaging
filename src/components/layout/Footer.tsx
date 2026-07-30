@@ -15,7 +15,7 @@ export default async function Footer() {
   return (
     <footer className="bg-neutral-900 text-white">
       <div className="container-page py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Col 1: Brand */}
           <div>
             <h3 className="text-xl font-bold text-white mb-4">
@@ -87,6 +87,38 @@ export default async function Footer() {
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* Col 5: Trade Platforms */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+              {t('footer_platforms')}
+            </h4>
+            <p className="text-neutral-500 text-xs mb-3">
+              {t('footer_platforms_desc')}
+            </p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href="https://www.1688.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-300 hover:text-white text-sm transition-colors"
+                >
+                  {t('footer_1688')} →
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.alibaba.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-300 hover:text-white text-sm transition-colors"
+                >
+                  {t('footer_alibaba')} →
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

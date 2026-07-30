@@ -1,6 +1,7 @@
-import HeroSection from "@/components/home/HeroSection";
+import HeroCarousel from "@/components/home/HeroCarousel";
 import ProductCategories from "@/components/home/ProductCategories";
 import AdvantagesSection from "@/components/home/AdvantagesSection";
+import VideoShowcase from "@/components/home/VideoShowcase";
 import AboutSnippet from "@/components/home/AboutSnippet";
 import IndustriesMarquee from "@/components/home/IndustriesMarquee";
 import CTABanner from "@/components/home/CTABanner";
@@ -26,12 +27,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
+      <HeroCarousel />
       <ScrollReveal direction="up" delay={0}>
         <ProductCategories />
       </ScrollReveal>
       <ScrollReveal direction="up" delay={0.1}>
         <AdvantagesSection />
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={0.15}>
+        <VideoShowcase />
       </ScrollReveal>
       <ScrollReveal direction="up" delay={0.2}>
         <AboutSnippet />

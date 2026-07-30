@@ -13,10 +13,19 @@ type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Omit<Props, 'children'>): Promise<Metadata> {
   const { locale } = await params;
+  const baseUrl = 'https://minglangpackaging.com';
   return {
     title: { template: '%s | Minglang Packaging', default: 'Shenzhen Minglang Packaging Products Co., Ltd.' },
     description: 'Professional flexible packaging ODM/OEM manufacturer with 20 years of experience',
-    metadataBase: new URL('https://minglangpackaging.com'),
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        'zh-CN': `/${'zh-CN'}`,
+        'zh-TW': `/${'zh-TW'}`,
+        'en': `/en`,
+      },
+    },
   };
 }
 

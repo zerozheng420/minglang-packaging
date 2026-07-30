@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import Badge from '@/components/ui/Badge';
+import ImageLightbox from '@/components/ui/ImageLightbox';
 import { ProductSchema, BreadcrumbSchema } from '@/components/ui/StructuredData';
 import { products, categoryLabels } from '@/data/products';
 import type { ProductCategory } from '@/data/products';
@@ -75,36 +75,7 @@ export default async function ProductDetailPage({
       <div className="container-page">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Product image gallery */}
-          <div className="space-y-4">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-100">
-              <Image
-                src={product.images[0]}
-                alt={product.title[loc]}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            </div>
-            {product.images.length > 1 && (
-              <div className="grid grid-cols-2 gap-4">
-                {product.images.slice(1).map((img, i) => (
-                  <div
-                    key={i}
-                    className="relative aspect-square rounded-xl overflow-hidden bg-neutral-100"
-                  >
-                    <Image
-                      src={img}
-                      alt={`${product.title[loc]} - ${i + 2}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ImageLightbox images={product.images} alt={product.title[loc]} />
 
           {/* Product details */}
           <div className="flex flex-col justify-center">
