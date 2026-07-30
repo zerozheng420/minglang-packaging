@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
@@ -7,11 +7,14 @@ import ImageLightbox from '@/components/ui/ImageLightbox';
 import { ProductSchema, BreadcrumbSchema } from '@/components/ui/StructuredData';
 import { products, categoryLabels } from '@/data/products';
 import type { ProductCategory } from '@/data/products';
+import { routing } from '@/i18n/routing';
 
 type Locale = 'zh-CN' | 'zh-TW' | 'en';
 
-export async function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    products.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
@@ -39,6 +42,7 @@ export default async function ProductDetailPage({
 }) {
   const { locale, slug } = await params;
   const loc = locale as Locale;
+  setRequestLocale(locale);
   const t = await getTranslations('products');
   const tc = await getTranslations('common');
 
