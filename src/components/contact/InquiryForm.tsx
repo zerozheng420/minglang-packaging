@@ -251,18 +251,15 @@ export default function InquiryForm() {
         {status === 'submitting' ? ct('loading') : t('form_submit')}
       </Button>
 
-      {/* Status messages */}
-      {status === 'success' && (
-        <div className="p-4 bg-primary-50 border border-primary-200 rounded-lg text-primary-800 text-sm">
-          {t('form_success')}
-        </div>
-      )}
-
+      {/* Error message */}
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {t('form_error')}
         </div>
       )}
-    </form>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

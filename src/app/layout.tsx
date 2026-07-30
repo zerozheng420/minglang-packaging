@@ -6,6 +6,7 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 const notoSansSC = Noto_Sans_SC({
@@ -13,6 +14,7 @@ const notoSansSC = Noto_Sans_SC({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 const notoSansTC = Noto_Sans_TC({
@@ -20,12 +22,13 @@ const notoSansTC = Noto_Sans_TC({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
   title: "Minglang Packaging",
   description: "Premium flexible packaging manufacturer",
-  icons: { icon: '/favicon.svg', type: 'image/svg+xml' },
+  icons: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { BLUR_PLACEHOLDER } from '@/lib/placeholder';
 
 // 4 slides with different images and taglines
 const slides = [
@@ -58,7 +59,7 @@ export default function HeroCarousel() {
             i === current ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <Image src={slide.image} alt="" fill className="object-cover" priority={i === 0} />
+          <Image src={slide.image} alt="" fill className="object-cover" priority={i === 0} placeholder="blur" blurDataURL={BLUR_PLACEHOLDER} />
           <div className="absolute inset-0 bg-gradient-to-br from-forest-dark/80 via-forest/70 to-forest-light/60" />
         </div>
       ))}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { clsx } from 'clsx';
@@ -93,61 +94,79 @@ export default function Header() {
       </div>
 
       {/* Mobile menu overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/40"
-            onClick={closeMobileMenu}
-          />
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/40"
+              onClick={closeMobileMenu}
+            />
 
-          {/* Slide-in panel */}
-          <div className="fixed right-0 top-0 bottom-0 w-72 bg-white shadow-xl flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-100">
-              <span className="text-primary-700 font-bold text-lg">
-                明朗包装
-              </span>
-              <button
-                type="button"
-                onClick={closeMobileMenu}
-                className="p-2 text-neutral-500 hover:text-neutral-700"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <nav className="flex flex-col p-4 gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.key}
-                  href={link.href}
+            {/* Slide-in panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed right-0 top-0 bottom-0 w-72 bg-white shadow-xl flex flex-col"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-neutral-100">
+                <span className="text-primary-700 font-bold text-lg">
+                  明朗包装
+                </span>
+                <button
+                  type="button"
                   onClick={closeMobileMenu}
-                  className="px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg font-medium transition-colors"
+                  className="p-2 text-neutral-500 hover:text-neutral-700"
+                  aria-label="Close menu"
                 >
-                  {t(link.key)}
-                </Link>
-              ))}
-            </nav>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
 
-            <div className="mt-auto p-4 border-t border-neutral-100">
-              <LanguageSwitcher />
-            </div>
+              <nav className="flex flex-col p-4 gap-1">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.key}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.05 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className="block px-4 py-3 text-neutral-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg font-medium transition-colors"
+                    >
+                      {t(link.key)}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              <div className="mt-auto p-4 border-t border-neutral-100">
+                <LanguageSwitcher />
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </header>
   );
 }

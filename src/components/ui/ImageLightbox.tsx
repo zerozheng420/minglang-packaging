@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BLUR_PLACEHOLDER } from '@/lib/placeholder';
 
 interface ImageLightboxProps {
   images: string[];
@@ -42,7 +43,7 @@ export default function ImageLightbox({ images, alt }: ImageLightboxProps) {
           className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-100 cursor-pointer group"
           onClick={() => open(0)}
         >
-          <Image src={images[0]} alt={alt} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 1024px) 100vw, 50vw" priority />
+          <Image src={images[0]} alt={alt} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 1024px) 100vw, 50vw" priority placeholder="blur" blurDataURL={BLUR_PLACEHOLDER} />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 text-neutral-800 px-4 py-2 rounded-lg text-sm font-medium">Click to enlarge</span>
           </div>
@@ -51,7 +52,7 @@ export default function ImageLightbox({ images, alt }: ImageLightboxProps) {
           <div className="grid grid-cols-4 gap-3">
             {images.map((img, i) => (
               <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-neutral-100 cursor-pointer ring-2 ring-transparent hover:ring-primary-400 transition-all" onClick={() => open(i)}>
-                <Image src={img} alt={`${alt} ${i + 1}`} fill className="object-cover" sizes="25vw" />
+                <Image src={img} alt={`${alt} ${i + 1}`} fill className="object-cover" sizes="25vw" placeholder="blur" blurDataURL={BLUR_PLACEHOLDER} />
               </div>
             ))}
           </div>
@@ -79,7 +80,7 @@ export default function ImageLightbox({ images, alt }: ImageLightboxProps) {
 
             {/* Image */}
             <div className="relative w-[90vw] h-[80vh]" onClick={(e) => e.stopPropagation()}>
-              <Image src={images[currentIndex]} alt={`${alt} ${currentIndex + 1}`} fill className="object-contain" sizes="90vw" />
+              <Image src={images[currentIndex]} alt={`${alt} ${currentIndex + 1}`} fill className="object-contain" sizes="90vw" placeholder="blur" blurDataURL={BLUR_PLACEHOLDER} />
             </div>
 
             {/* Next */}
@@ -89,7 +90,7 @@ export default function ImageLightbox({ images, alt }: ImageLightboxProps) {
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2" onClick={(e) => e.stopPropagation()}>
               {images.map((img, i) => (
                 <button key={i} onClick={() => setCurrentIndex(i)} className={`relative w-16 h-16 rounded-lg overflow-hidden ring-2 transition-all ${i === currentIndex ? 'ring-white' : 'ring-white/30 hover:ring-white/60'}`}>
-                  <Image src={img} alt="" fill className="object-cover" sizes="64px" />
+                  <Image src={img} alt="" fill className="object-cover" sizes="64px" placeholder="blur" blurDataURL={BLUR_PLACEHOLDER} />
                 </button>
               ))}
             </div>
