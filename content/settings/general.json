@@ -1,0 +1,16 @@
+{
+  "site_name": {
+    "zh-CN": "深圳市明朗包装制品有限公司",
+    "zh-TW": "深圳市明朗包裝製品有限公司",
+    "en": "Shenzhen Minglang Packaging Products Co., Ltd."
+  },
+  "phone": "+86 138-xxxx-xxxx",
+  "email": "sales@minglangpackaging.com",
+  "wechat_id": "MingLangPackaging",
+  "whatsapp_number": "+86 138-xxxx-xxxx",
+  "address": {
+    "zh-CN": "广东省深圳市龙岗区",
+    "zh-TW": "廣東省深圳市龍崗區",
+    "en": "Longgang District, Shenzhen, Guangdong, China"
+  }
+}

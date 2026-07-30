@@ -1,0 +1,132 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+site_url: https://minglangpackaging.com
+display_url: https://minglangpackaging.com
+
+locale: zh-CN
+
+i18n:
+  structure: single_file
+  locales: [zh-CN, zh-TW, en]
+  default_locale: zh-CN
+
+collections:
+  - name: pages
+    label: "页面管理"
+    label_singular: "页面"
+    folder: content/pages
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    editor:
+      preview: false
+    fields:
+      - { name: title, label: "标题", widget: object, i18n: true,
+          fields:
+            - { name: zh-CN, label: "简体中文", widget: string }
+            - { name: zh-TW, label: "繁體中文", widget: string }
+            - { name: en, label: English, widget: string }
+        }
+      - { name: body, label: "正文", widget: markdown, i18n: true }
+      - { name: meta_description, label: "SEO 描述", widget: text, i18n: true, required: false }
+
+  - name: products
+    label: "产品管理"
+    label_singular: "产品"
+    folder: content/products
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    editor:
+      preview: false
+    fields:
+      - { name: slug, label: "URL 标识", widget: string, hint: "英文短横线连接，如 grey-velvet-pouch" }
+      - { name: title, label: "产品名称", widget: object, i18n: true,
+          fields:
+            - { name: zh-CN, label: "简体中文", widget: string }
+            - { name: zh-TW, label: "繁體中文", widget: string }
+            - { name: en, label: English, widget: string }
+        }
+      - { name: category, label: "产品分类", widget: select,
+          options:
+            - { label: "灰绒布袋", value: "grey-velvet" }
+            - { label: "短毛绒袋", value: "short-plush" }
+            - { label: "色丁布缎面袋", value: "satin" }
+            - { label: "帆布袋", value: "canvas" }
+        }
+      - { name: description, label: "产品描述", widget: markdown, i18n: true, required: false }
+      - { name: material, label: "材质", widget: object, i18n: true,
+          fields:
+            - { name: zh-CN, label: "简体中文", widget: string }
+            - { name: zh-TW, label: "繁體中文", widget: string }
+            - { name: en, label: English, widget: string }
+        }
+      - { name: sizes, label: "可选尺寸", widget: object, i18n: true,
+          fields:
+            - { name: zh-CN, label: "简体中文", widget: string }
+            - { name: zh-TW, label: "繁體中文", widget: string }
+            - { name: en, label: English, widget: string }
+        }
+      - { name: moq, label: "起订量", widget: string }
+      - { name: sampleTime, label: "打样周期", widget: string }
+      - { name: bulkTime, label: "大货周期", widget: string }
+      - { name: images, label: "产品图片", widget: list,
+          field: { name: image, label: "图片", widget: image }
+        }
+      - { name: featured, label: "首页推荐", widget: boolean, default: false }
+
+  - name: faqs
+    label: "常见问题"
+    label_singular: "FAQ"
+    folder: content/faqs
+    create: true
+    format: yaml-frontmatter
+    extension: md
+    editor:
+      preview: false
+    fields:
+      - { name: question, label: "问题", widget: object, i18n: true,
+          fields:
+            - { name: zh-CN, label: "简体中文", widget: string }
+            - { name: zh-TW, label: "繁體中文", widget: string }
+            - { name: en, label: English, widget: string }
+        }
+      - { name: answer, label: "回答", widget: markdown, i18n: true }
+      - { name: category, label: "分类", widget: select,
+          options:
+            - { label: "下单相关", value: "ordering" }
+            - { label: "定制相关", value: "customization" }
+            - { label: "物流相关", value: "shipping" }
+            - { label: "付款相关", value: "payment" }
+        }
+      - { name: order, label: "排序", widget: number, default: 0, value_type: int }
+
+  - name: settings
+    label: "网站设置"
+    files:
+      - name: general
+        label: "通用设置"
+        file: content/settings/general.json
+        format: json
+        fields:
+          - { name: site_name, label: "网站名称", widget: object, i18n: true,
+              fields:
+                - { name: zh-CN, label: "简体中文", widget: string }
+                - { name: zh-TW, label: "繁體中文", widget: string }
+                - { name: en, label: English, widget: string }
+            }
+          - { name: phone, label: "电话", widget: string }
+          - { name: email, label: "邮箱", widget: string }
+          - { name: wechat_id, label: "微信号", widget: string }
+          - { name: whatsapp_number, label: "WhatsApp", widget: string }
+          - { name: address, label: "地址", widget: object, i18n: true,
+              fields:
+                - { name: zh-CN, label: "简体中文", widget: text }
+                - { name: zh-TW, label: "繁體中文", widget: text }
+                - { name: en, label: English, widget: text }
+            }
