@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import Badge from '@/components/ui/Badge';
+import { ProductSchema, BreadcrumbSchema } from '@/components/ui/StructuredData';
 import { products, categoryLabels } from '@/data/products';
 import type { ProductCategory } from '@/data/products';
 
@@ -39,6 +40,7 @@ export default async function ProductDetailPage({
   const { locale, slug } = await params;
   const loc = locale as Locale;
   const t = await getTranslations('products');
+  const tc = await getTranslations('common');
 
   const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
@@ -51,8 +53,25 @@ export default async function ProductDetailPage({
     { label: t('bulkTime'), value: product.bulkTime },
   ];
 
+  const breadcrumbItems = [
+    { name: tc('nav_home'), url: `https://minglangpackaging.com/${locale}` },
+    { name: tc('nav_products'), url: `https://minglangpackaging.com/${locale}/products` },
+    { name: product.title[loc], url: `https://minglangpackaging.com/${locale}/products/${product.slug}` },
+  ];
+
   return (
-    <div className="section-padding">
+    <>
+      <ProductSchema
+        product={{
+          name: product.title[loc],
+          description: product.material[loc],
+          image: product.images[0],
+          category: categoryLabels[product.category]?.[loc] ?? product.category,
+          material: product.material[loc],
+        }}
+      />
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <div className="section-padding">
       <div className="container-page">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Product image gallery */}
@@ -126,5 +145,6 @@ export default async function ProductDetailPage({
         </div>
       </div>
     </div>
+    </>
   );
 }

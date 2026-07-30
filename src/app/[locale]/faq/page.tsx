@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Accordion from "@/components/ui/Accordion";
+import { FAQSchema } from "@/components/ui/StructuredData";
 
 type Locale = "zh-CN" | "zh-TW" | "en";
 
@@ -157,26 +158,34 @@ export default async function FAQPage({
     {} as Record<string, { question: string; answer: string }[]>
   );
 
-  return (
-    <div className="section-padding">
-      <div className="container-page max-w-3xl">
-        <SectionHeading title={t("title")} centered />
+  const faqSchemaItems = faqs.map((faq) => ({
+    question: faq.question[loc],
+    answer: faq.answer[loc],
+  }));
 
-        <div className="mt-12 space-y-10">
-          {Object.entries(categoryNameKeys).map(([catKey, nameKey]) => {
-            const items = grouped[catKey];
-            if (!items || items.length === 0) return null;
-            return (
-              <div key={catKey}>
-                <h2 className="text-xl font-bold text-primary-700 mb-4">
-                  {t(nameKey)}
-                </h2>
-                <Accordion items={items} />
-              </div>
-            );
-          })}
+  return (
+    <>
+      <FAQSchema items={faqSchemaItems} />
+      <div className="section-padding">
+        <div className="container-page max-w-3xl">
+          <SectionHeading title={t("title")} centered />
+
+          <div className="mt-12 space-y-10">
+            {Object.entries(categoryNameKeys).map(([catKey, nameKey]) => {
+              const items = grouped[catKey];
+              if (!items || items.length === 0) return null;
+              return (
+                <div key={catKey}>
+                  <h2 className="text-xl font-bold text-primary-700 mb-4">
+                    {t(nameKey)}
+                  </h2>
+                  <Accordion items={items} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

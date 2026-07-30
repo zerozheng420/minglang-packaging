@@ -4,6 +4,7 @@ import AdvantagesSection from "@/components/home/AdvantagesSection";
 import AboutSnippet from "@/components/home/AboutSnippet";
 import IndustriesMarquee from "@/components/home/IndustriesMarquee";
 import CTABanner from "@/components/home/CTABanner";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 
@@ -26,11 +27,21 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ProductCategories />
-      <AdvantagesSection />
-      <AboutSnippet />
-      <IndustriesMarquee />
-      <CTABanner />
+      <ScrollReveal direction="up" delay={0}>
+        <ProductCategories />
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={0.1}>
+        <AdvantagesSection />
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={0.2}>
+        <AboutSnippet />
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={0.3}>
+        <IndustriesMarquee />
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={0.4}>
+        <CTABanner />
+      </ScrollReveal>
     </>
   );
 }

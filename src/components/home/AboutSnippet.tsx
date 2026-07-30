@@ -1,18 +1,14 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import StatsCounter from "@/components/ui/StatsCounter";
 
-interface StatItem {
-  value: string;
-  labelKey: string;
-}
-
-const stats: StatItem[] = [
-  { value: "5000+", labelKey: "stats_clients" },
-  { value: "100000+", labelKey: "stats_orders" },
-  { value: "100+", labelKey: "stats_categories" },
-  { value: "20", labelKey: "stats_experience" },
-];
+const stats = [
+  { value: "5000+", numericValue: 5000, suffix: "+", labelKey: "stats_clients" },
+  { value: "100000+", numericValue: 100000, suffix: "+", labelKey: "stats_orders" },
+  { value: "100+", numericValue: 100, suffix: "+", labelKey: "stats_categories" },
+  { value: "20", numericValue: 20, suffix: "", labelKey: "stats_experience" },
+] as const;
 
 export default async function AboutSnippet() {
   const h = await getTranslations("homepage");
@@ -50,18 +46,15 @@ export default async function AboutSnippet() {
             </p>
 
             {/* Stats row */}
-            <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {stats.map((stat) => (
-                <div key={stat.labelKey}>
-                  <p className="text-3xl font-bold text-primary-600">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-sm text-neutral-500">
-                    {h(stat.labelKey as never)}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <StatsCounter
+              items={stats.map((stat) => ({
+                value: stat.value,
+                numericValue: stat.numericValue,
+                suffix: stat.suffix,
+                label: h(stat.labelKey as never),
+              }))}
+              className="mt-8"
+            />
 
             {/* Learn more link */}
             <Link

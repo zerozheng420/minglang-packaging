@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { OrganizationSchema } from '@/components/ui/StructuredData';
+import BackToTop from '@/components/ui/BackToTop';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import type { Metadata } from 'next';
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
@@ -26,7 +29,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <div lang={locale} className="h-full antialiased">
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-16"><OrganizationSchema />{children}</main>
+        <BackToTop />
+        <WhatsAppButton />
         <Footer />
       </div>
     </NextIntlClientProvider>
