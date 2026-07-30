@@ -37,9 +37,9 @@
   --color-neutral-800: #262626;
   --color-neutral-900: #171717;
 
-  /* Fonts */
-  --font-sans: "Inter", "Noto Sans SC", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Inter", "Noto Sans SC", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  /* Fonts - uses CSS variables from next/font/google */
+  --font-sans: var(--font-inter), var(--font-noto-sc), var(--font-noto-tc), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter), var(--font-noto-sc), var(--font-noto-tc), ui-sans-serif, system-ui, sans-serif;
 
   /* Border radius */
   --radius-card: 0.75rem;
