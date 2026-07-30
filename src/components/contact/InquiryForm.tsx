@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from 'react';
 import { useTranslations } from 'next-intl';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from '@/i18n/navigation';
 import Button from '@/components/ui/Button';
 
 type FormData = {
@@ -79,7 +81,43 @@ export default function InquiryForm() {
     'w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors text-neutral-800 placeholder:text-neutral-400';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+    <div className="relative">
+      <AnimatePresence mode="wait">
+        {status === 'success' ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col items-center justify-center py-16 text-center"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
+              className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6"
+            >
+              <svg className="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </motion.div>
+            <h3 className="text-2xl font-bold text-neutral-800 mb-2">提交成功！</h3>
+            <p className="text-neutral-600 mb-8">{t('form_success')}</p>
+            <Link href="/" className="inline-flex items-center px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors">
+              返回首页
+            </Link>
+          </motion.div>
+        ) : (
+          <motion.form
+            key="form"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            noValidate
+          >
       {/* Name */}
       <div>
         <label

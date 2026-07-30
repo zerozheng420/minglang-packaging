@@ -73,7 +73,7 @@ export const products: Product[] = [
     category: 'short-plush',
     images: [
       '/images/products/short-plush/8811.jpg',
-      '/images/products/short-plush/紫色01.png',
+      '/images/products/short-plush/紫色01.jpg',
     ],
     title: {
       'zh-CN': '柔软短毛绒收纳袋',
@@ -99,7 +99,7 @@ export const products: Product[] = [
     category: 'short-plush',
     images: [
       '/images/products/short-plush/8811.jpg',
-      '/images/products/short-plush/紫色01.png',
+      '/images/products/short-plush/紫色01.jpg',
     ],
     title: {
       'zh-CN': '短毛绒豪华礼品袋',

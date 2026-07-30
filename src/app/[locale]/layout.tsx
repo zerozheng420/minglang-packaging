@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import MobileCTA from '@/components/layout/MobileCTA';
 import { OrganizationSchema } from '@/components/ui/StructuredData';
 import BackToTop from '@/components/ui/BackToTop';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
@@ -38,10 +39,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <div lang={locale} className="h-full antialiased">
         <Header />
-        <main className="flex-1 pt-16"><OrganizationSchema />{children}</main>
+        <main className="flex-1 pt-16 pb-16 lg:pb-0"><OrganizationSchema />{children}</main>
         <BackToTop />
         <WhatsAppButton />
         <Footer />
+        <MobileCTA />
       </div>
     </NextIntlClientProvider>
   );

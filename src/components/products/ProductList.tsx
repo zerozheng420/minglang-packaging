@@ -46,10 +46,15 @@ function ProductCard({
   categoryLabel: string;
 }) {
   const t = useTranslations('products');
+  const [isHovered, setIsHovered] = useState(false);
+  const hasHoverImage = product.images.length > 1;
+
   return (
     <Link
       href={`/products/${product.slug}`}
       className="group rounded-xl border border-neutral-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="aspect-square relative overflow-hidden bg-neutral-100">
         <Image
@@ -59,6 +64,16 @@ function ProductCard({
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
+        {hasHoverImage && (
+          <Image
+            src={product.images[1]}
+            alt={product.title[locale]}
+            fill
+            className="object-cover absolute inset-0 transition-opacity duration-500"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            style={{ opacity: isHovered ? 1 : 0 }}
+          />
+        )}
       </div>
       <div className="p-4">
         <Badge variant="green">{categoryLabel}</Badge>

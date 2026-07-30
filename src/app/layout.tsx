@@ -25,6 +25,7 @@ const notoSansTC = Noto_Sans_TC({
 export const metadata: Metadata = {
   title: "Minglang Packaging",
   description: "Premium flexible packaging manufacturer",
+  icons: { icon: '/favicon.svg', type: 'image/svg+xml' },
 };
 
 export default function RootLayout({
