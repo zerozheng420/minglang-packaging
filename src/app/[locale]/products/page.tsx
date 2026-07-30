@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -7,6 +8,16 @@ import { products, groupProductsByCategory, type ProductCategory } from '@/data/
 import type { Product } from '@/data/products';
 
 type Locale = 'zh-CN' | 'zh-TW' | 'en';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'products' });
+  const tc = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: `${t('title')} - ${tc('siteName')}`,
+    description: t('subtitle'),
+  };
+}
 
 export default async function ProductsPage({
   params,

@@ -1,7 +1,18 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import SectionHeading from "@/components/ui/SectionHeading";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'about' });
+  const tc = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: `${t('title')} - ${tc('siteName')}`,
+    description: t('mission_text').slice(0, 160),
+  };
+}
 
 const stats = [
   { key: "experience", value: "20+", suffixKey: "experience_badge" },

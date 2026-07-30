@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -12,6 +13,16 @@ const materials = [
   { key: "nonwoven", zh: "无纺布", en: "Non-woven" },
   { key: "puLeather", zh: "PU皮革", en: "PU Leather" },
 ];
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'customOem' });
+  const tc = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: `${t('title')} - ${tc('siteName')}`,
+    description: t('subtitle'),
+  };
+}
 
 export default async function CustomOemPage({
   params,

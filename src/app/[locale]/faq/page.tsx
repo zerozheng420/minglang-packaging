@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Accordion from "@/components/ui/Accordion";
 
@@ -123,6 +124,16 @@ const categoryNameKeys: Record<string, string> = {
   shipping: "category_shipping",
   payment: "category_payment",
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'faq' });
+  const tc = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: `${t('title')} - ${tc('siteName')}`,
+    description: t('title'),
+  };
+}
 
 export default async function FAQPage({
   params,

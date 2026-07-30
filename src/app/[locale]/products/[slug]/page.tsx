@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
@@ -10,6 +11,24 @@ type Locale = 'zh-CN' | 'zh-TW' | 'en';
 
 export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const loc = locale as Locale;
+  const product = products.find((p) => p.slug === slug);
+  if (!product) return { title: 'Product Not Found' };
+  const tc = await getTranslations({ locale, namespace: 'common' });
+  return {
+    title: `${product.title[loc]} - ${tc('siteName')}`,
+    description: product.material[loc],
+    openGraph: {
+      title: product.title[loc],
+      description: product.material[loc],
+      images: product.images,
+      type: 'website',
+    },
+  };
 }
 
 export default async function ProductDetailPage({
