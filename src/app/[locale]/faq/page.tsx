@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import SectionHeading from "@/components/ui/SectionHeading";
+import PageHero from "@/components/ui/PageHero";
 import Accordion from "@/components/ui/Accordion";
 import { FAQSchema } from "@/components/ui/StructuredData";
 
@@ -166,23 +166,31 @@ export default async function FAQPage({
   return (
     <>
       <FAQSchema items={faqSchemaItems} />
-      <div className="section-padding">
-        <div className="container-page max-w-3xl">
-          <SectionHeading title={t("title")} centered />
+      <div className="bg-cream">
+        <PageHero eyebrow="FAQ" title={t("title")} />
 
-          <div className="mt-12 space-y-10">
-            {Object.entries(categoryNameKeys).map(([catKey, nameKey]) => {
-              const items = grouped[catKey];
-              if (!items || items.length === 0) return null;
-              return (
-                <div key={catKey}>
-                  <h2 className="text-xl font-bold text-primary-700 mb-4">
-                    {t(nameKey)}
-                  </h2>
-                  <Accordion items={items} />
-                </div>
-              );
-            })}
+        <div className="section-padding section-padding-lg">
+          <div className="container-page max-w-3xl">
+            <div className="space-y-12">
+              {Object.entries(categoryNameKeys).map(([catKey, nameKey], idx) => {
+                const items = grouped[catKey];
+                if (!items || items.length === 0) return null;
+                return (
+                  <div key={catKey}>
+                    <div className="mb-5 flex items-center gap-4">
+                      <span className="font-display text-xl font-semibold text-gold-500/70">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <h2 className="font-display text-2xl font-semibold text-neutral-900">
+                        {t(nameKey)}
+                      </h2>
+                      <div className="h-px flex-1 bg-gradient-to-r from-gold-300/70 to-transparent" />
+                    </div>
+                    <Accordion items={items} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/home/HeroCarousel";
+import BrandMarquee from "@/components/home/BrandMarquee";
 import ProductCategories from "@/components/home/ProductCategories";
 import AdvantagesSection from "@/components/home/AdvantagesSection";
 import VideoShowcase from "@/components/home/VideoShowcase";
@@ -28,6 +29,7 @@ export default function HomePage() {
   return (
     <>
       <HeroCarousel />
+      <BrandMarquee />
       <ScrollReveal direction="up" delay={0}>
         <ProductCategories />
       </ScrollReveal>

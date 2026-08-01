@@ -10,7 +10,7 @@ const languages = [
   { code: 'en', label: 'EN', fullLabel: 'English' },
 ] as const;
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ light = false }: { light?: boolean }) {
   const pathname = usePathname();
   const currentLocale = useLocale();
 
@@ -23,10 +23,12 @@ export default function LanguageSwitcher() {
           locale={lang.code}
           aria-label={lang.fullLabel}
           className={clsx(
-            'px-2.5 py-1 text-xs font-medium rounded transition-colors',
+            'px-2.5 py-1 text-xs font-medium rounded-full transition-colors',
             currentLocale === lang.code
-              ? 'bg-primary-500 text-white'
-              : 'text-neutral-500 hover:text-primary-600 hover:bg-primary-50',
+              ? 'bg-gold-500 text-white'
+              : light
+                ? 'text-cream/80 hover:text-white hover:bg-cream/10'
+                : 'text-neutral-500 hover:text-gold-600 hover:bg-gold-50',
           )}
         >
           {lang.label}

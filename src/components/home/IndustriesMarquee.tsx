@@ -1,40 +1,31 @@
-import { getTranslations } from "next-intl/server";
-import SectionHeading from "@/components/ui/SectionHeading";
+import { getTranslations } from 'next-intl/server';
 
-interface IndustryPill {
-  labelKey: string;
-}
+const industries = [
+  'industries_jewelry',
+  'industries_beauty',
+  'industries_3c',
+  'industries_gift',
+  'industries_ecommerce',
+  'industries_brand',
+] as const;
 
-const industries: IndustryPill[] = [
-  { labelKey: "industries_jewelry" },
-  { labelKey: "industries_beauty" },
-  { labelKey: "industries_3c" },
-  { labelKey: "industries_gift" },
-  { labelKey: "industries_ecommerce" },
-  { labelKey: "industries_brand" },
-];
-
+/** Reverse marquee band — gold serif words on cream, opposite direction to the hero marquee. */
 export default async function IndustriesMarquee() {
-  const t = await getTranslations("homepage");
+  const t = await getTranslations('homepage');
+
+  const items = [...industries, ...industries];
 
   return (
-    <section className="section-padding bg-neutral-50">
-      <div className="container-page">
-        <SectionHeading
-          title={t("industries_title")}
-          centered
-        />
-
-        <div className="mt-10 flex flex-wrap justify-center gap-6">
-          {industries.map((industry) => (
-            <span
-              key={industry.labelKey}
-              className="rounded-full border border-neutral-200 bg-white px-6 py-3 text-sm font-medium text-neutral-600 transition-colors hover:border-primary-300 hover:text-primary-600"
-            >
-              {t(industry.labelKey as never)}
+    <section className="border-y border-neutral-200/70 bg-cream py-7 lg:py-9 overflow-hidden">
+      <div className="flex w-max animate-marquee-reverse items-center gap-0">
+        {items.map((key, i) => (
+          <div key={i} className="flex items-center">
+            <span className="whitespace-nowrap px-7 font-display text-2xl lg:text-3xl font-medium italic tracking-tight text-primary-800">
+              {t(key as never)}
             </span>
-          ))}
-        </div>
+            <span className="text-gold-400 text-base">✦</span>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -9,8 +9,8 @@ type BadgeProps = {
 
 const variantClasses: Record<NonNullable<BadgeProps['variant']>, string> = {
   default: 'bg-neutral-100 text-neutral-700',
-  green: 'bg-primary-100 text-primary-800',
-  gold: 'bg-accent-light text-accent-dark',
+  green: 'bg-primary-100 text-primary-800 ring-1 ring-primary-200',
+  gold: 'bg-gold-100 text-gold-800 ring-1 ring-gold-300',
 };
 
 export default function Badge({

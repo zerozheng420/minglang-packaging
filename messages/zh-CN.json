@@ -79,7 +79,12 @@
     "cta_title": "准备好开始您的包装项目了吗？",
     "cta_subtitle": "无论是小批量定制还是大批量生产，我们都能为您提供最优质的包装解决方案",
     "cta_button": "立即咨询",
-    "video_title": "工厂实拍"
+    "video_title": "工厂实拍",
+    "marquee_odm": "ODM 定制设计",
+    "marquee_oem": "OEM 批量代工",
+    "marquee_moq": "小批量起订",
+    "marquee_eco": "环保材质",
+    "marquee_20years": "20年行业经验"
   },
   "products": {
     "title": "产品中心",
@@ -145,7 +150,11 @@
     "form_message": "留言内容 *",
     "form_submit": "提交询价",
     "form_success": "提交成功！我们会尽快与您联系。",
+    "form_success_title": "提交成功！",
+    "form_back_home": "返回首页",
     "form_error": "提交失败，请稍后重试或直接发送邮件。",
+    "form_response_title": "24小时快速响应",
+    "form_response_desc": "销售团队将在24小时内回复您的询价",
     "form_placeholder_name": "请输入您的姓名",
     "form_placeholder_email": "请输入您的邮箱",
     "form_placeholder_phone": "请输入您的电话或微信",

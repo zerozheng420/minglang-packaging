@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import SectionHeading from '@/components/ui/SectionHeading';
+import PageHero from '@/components/ui/PageHero';
 import ProductList from '@/components/products/ProductList';
 
 type Locale = 'zh-CN' | 'zh-TW' | 'en';
@@ -25,15 +25,17 @@ export default async function ProductsPage({
   const t = await getTranslations('products');
 
   return (
-    <div className="section-padding">
-      <div className="container-page">
-        <SectionHeading
-          title={t('title')}
-          subtitle={t('subtitle')}
-          centered
-        />
+    <div className="bg-cream">
+      <PageHero
+        eyebrow="PRODUCTS"
+        title={t('title')}
+        subtitle={t('subtitle')}
+      />
 
-        <ProductList locale={loc} />
+      <div className="section-padding section-padding-lg">
+        <div className="container-page">
+          <ProductList locale={loc} />
+        </div>
       </div>
     </div>
   );

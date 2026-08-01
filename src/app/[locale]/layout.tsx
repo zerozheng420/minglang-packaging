@@ -39,7 +39,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <div lang={locale} className="h-full antialiased">
         <Header />
-        <main className="flex-1 pt-16 pb-16 lg:pb-0"><OrganizationSchema />{children}</main>
+        <main className="flex-1"><OrganizationSchema />{children}</main>
         <BackToTop />
         <WhatsAppButton />
         <Footer />

@@ -33,7 +33,7 @@ export default function StatsCounter({ items, className }: StatsCounterProps) {
   useEffect(() => {
     if (!isVisible) return;
 
-    const duration = 1500;
+    const duration = 1600;
     const frameDuration = 16;
     const totalFrames = Math.round(duration / frameDuration);
 
@@ -58,15 +58,16 @@ export default function StatsCounter({ items, className }: StatsCounterProps) {
   return (
     <div
       ref={ref}
-      className={`grid grid-cols-2 gap-8 lg:grid-cols-4 ${className ?? ''}`}
+      className={`grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 ${className ?? ''}`}
     >
       {items.map((item, index) => (
-        <div key={item.label}>
-          <p className="text-3xl font-bold text-primary-600">
+        <div key={item.label} className="group">
+          <p className="font-display text-4xl lg:text-5xl font-semibold text-gold-600 transition-colors duration-300 group-hover:text-gold-500">
             {counts[index]}
             {item.suffix}
           </p>
-          <p className="mt-1 text-sm text-neutral-500">{item.label}</p>
+          <div className="mt-2 h-px w-8 bg-gold-400/50 transition-all duration-300 group-hover:w-14 group-hover:bg-gold-500" />
+          <p className="mt-2.5 text-sm text-neutral-500">{item.label}</p>
         </div>
       ))}
     </div>

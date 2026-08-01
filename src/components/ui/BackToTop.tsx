@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { clsx } from 'clsx';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -19,9 +20,10 @@ export default function BackToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white shadow-lg transition-all hover:bg-primary-600 ${
-        visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-      }`}
+      className={clsx(
+        'fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-white shadow-lg shadow-gold-900/30 transition-all duration-300 hover:bg-gold-600 hover:-translate-y-1',
+        visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+      )}
       aria-label="Back to top"
     >
       <svg

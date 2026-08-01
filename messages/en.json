@@ -79,7 +79,12 @@
     "cta_title": "Ready to Start Your Packaging Project?",
     "cta_subtitle": "Whether small batch customization or mass production, we provide the best packaging solutions for you",
     "cta_button": "Contact Us Now",
-    "video_title": "Factory Tour"
+    "video_title": "Factory Tour",
+    "marquee_odm": "ODM Custom Design",
+    "marquee_oem": "OEM Manufacturing",
+    "marquee_moq": "Low MOQ",
+    "marquee_eco": "Eco Materials",
+    "marquee_20years": "20 Years Experience"
   },
   "products": {
     "title": "Products",
@@ -145,7 +150,11 @@
     "form_message": "Message *",
     "form_submit": "Submit Inquiry",
     "form_success": "Submitted successfully! We will contact you shortly.",
+    "form_success_title": "Thank You!",
+    "form_back_home": "Back to Home",
     "form_error": "Submission failed. Please try again or email us directly.",
+    "form_response_title": "24-Hour Response",
+    "form_response_desc": "Our sales team will reply to your inquiry within 24 hours",
     "form_placeholder_name": "Enter your name",
     "form_placeholder_email": "Enter your email",
     "form_placeholder_phone": "Enter your phone or WeChat ID",

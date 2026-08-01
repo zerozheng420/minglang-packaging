@@ -56,7 +56,7 @@ function AdvantageIcon({ icon }: { icon: Advantage["icon"] }) {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M6.115 5.19A9.002 9.002 0 0019.81 18.885 9.002 9.002 0 006.115 5.19z"
+            d="M6.115 5.19A9.002 9.002 0 0019.81 18.885 9.002 9.002 0 006.115 5.19zM9.75 14.25l5.25-5.25m-7.5 0L14.25 16.5"
           />
         );
       case "tag":
@@ -77,7 +77,7 @@ function AdvantageIcon({ icon }: { icon: Advantage["icon"] }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-7 w-7 text-primary-600"
+      className="h-6 w-6"
     >
       {svg}
     </svg>
@@ -88,26 +88,35 @@ export default async function AdvantagesSection() {
   const t = await getTranslations("homepage");
 
   return (
-    <section className="section-padding bg-primary-50/50">
-      <div className="container-page">
+    <section className="relative overflow-hidden bg-forest-dark py-20 lg:py-28">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute top-0 right-0 h-72 w-72 rounded-full bg-gold-500/10 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full bg-primary-500/15 blur-[100px]" />
+
+      <div className="relative container-page">
         <SectionHeading
+          eyebrow="WHY MINGLANG"
           title={t("advantages_title")}
-          centered
+          dark
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 lg:mt-20 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {advantages.map((adv) => (
             <div
               key={adv.titleKey}
-              className="flex flex-col items-center rounded-xl border border-neutral-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group relative rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-400/40 hover:bg-white/[0.07]"
             >
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary-100">
+              {/* Top gold hairline on hover */}
+              <span className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="flex h-13 w-13 items-center justify-center rounded-full bg-gold-500/15 text-gold-300 ring-1 ring-gold-400/30 transition-all duration-500 group-hover:bg-gold-500 group-hover:text-white group-hover:shadow-lg group-hover:shadow-gold-900/40">
                 <AdvantageIcon icon={adv.icon} />
               </div>
-              <h3 className="text-lg font-semibold text-neutral-800">
+
+              <h3 className="mt-6 font-display text-xl font-semibold text-cream">
                 {t(adv.titleKey as never)}
               </h3>
-              <p className="mt-2 text-sm text-neutral-500">
+              <p className="mt-2.5 text-sm leading-relaxed text-neutral-300/80">
                 {t(adv.descKey as never)}
               </p>
             </div>

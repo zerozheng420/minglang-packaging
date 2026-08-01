@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_SC, Noto_Sans_TC } from "next/font/google";
+import {
+  Fraunces,
+  Inter,
+  Noto_Sans_SC,
+  Noto_Sans_TC,
+  Noto_Serif_SC,
+  Noto_Serif_TC,
+} from "next/font/google";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  fallback: ["Georgia", "serif"],
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,6 +40,22 @@ const notoSansTC = Noto_Sans_TC({
   fallback: ["system-ui", "sans-serif"],
 });
 
+const notoSerifSC = Noto_Serif_SC({
+  variable: "--font-noto-serif-sc",
+  weight: ["600", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["Georgia", "serif"],
+});
+
+const notoSerifTC = Noto_Serif_TC({
+  variable: "--font-noto-serif-tc",
+  weight: ["600", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["Georgia", "serif"],
+});
+
 export const metadata: Metadata = {
   title: "Minglang Packaging",
   description: "Premium flexible packaging manufacturer",
@@ -39,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={`${inter.variable} ${notoSansSC.variable} ${notoSansTC.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${notoSansSC.variable} ${notoSansTC.variable} ${notoSerifSC.variable} ${notoSerifTC.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

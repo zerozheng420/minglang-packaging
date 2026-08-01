@@ -79,7 +79,12 @@
     "cta_title": "準備好開始您的包裝項目了嗎？",
     "cta_subtitle": "無論是小批量定制還是大批量生產，我們都能為您提供最優質的包裝解決方案",
     "cta_button": "立即諮詢",
-    "video_title": "工廠實拍"
+    "video_title": "工廠實拍",
+    "marquee_odm": "ODM 定製設計",
+    "marquee_oem": "OEM 批量代工",
+    "marquee_moq": "小批量起訂",
+    "marquee_eco": "環保材質",
+    "marquee_20years": "20年行業經驗"
   },
   "products": {
     "title": "產品中心",
@@ -145,7 +150,11 @@
     "form_message": "留言內容 *",
     "form_submit": "提交詢價",
     "form_success": "提交成功！我們會盡快與您聯繫。",
+    "form_success_title": "提交成功！",
+    "form_back_home": "返回首頁",
     "form_error": "提交失敗，請稍後重試或直接發送郵件。",
+    "form_response_title": "24小時快速響應",
+    "form_response_desc": "銷售團隊將在24小時內回覆您的詢價",
     "form_placeholder_name": "請輸入您的姓名",
     "form_placeholder_email": "請輸入您的郵箱",
     "form_placeholder_phone": "請輸入您的電話或微信",
