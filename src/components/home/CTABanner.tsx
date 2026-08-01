@@ -27,7 +27,7 @@ export default async function CTABanner() {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-10 py-4 text-base font-semibold text-white shadow-lg shadow-gold-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-600"
+            className="btn-shine group inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-10 py-4 text-base font-semibold text-white shadow-lg shadow-gold-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-600"
           >
             {t("cta_button")}
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

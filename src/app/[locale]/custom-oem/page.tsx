@@ -167,7 +167,7 @@ export default async function CustomOemPage({
               </h2>
               <Link
                 href="/contact"
-                className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-11 py-4 text-base font-semibold text-white shadow-lg shadow-gold-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-600"
+                className="btn-shine group mt-9 inline-flex items-center gap-2.5 rounded-full bg-gold-500 px-11 py-4 text-base font-semibold text-white shadow-lg shadow-gold-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-600"
               >
                 {t("cta_button")}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

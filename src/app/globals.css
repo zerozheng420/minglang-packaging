@@ -146,6 +146,38 @@ body {
   100% { transform: translateY(200%); }
 }
 
+@keyframes shineSweep {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  100% { transform: translateX(230%) skewX(-18deg); }
+}
+
+/* ===== Button shine sweep (uiverse-style micro-interaction) ===== */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 100%
+    );
+    transform: translateX(-130%) skewX(-18deg);
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    animation: shineSweep 0.9s ease-out;
+  }
+}
+
 @utility animate-fade-in {
   animation: fadeIn 0.7s ease-out forwards;
 }
@@ -160,10 +192,18 @@ body {
 
 @utility animate-marquee {
   animation: marqueeX var(--marquee-duration, 32s) linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 }
 
 @utility animate-marquee-reverse {
   animation: marqueeXReverse var(--marquee-duration, 32s) linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* ===== Scrollbar ===== */

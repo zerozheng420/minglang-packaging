@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import RevealText from './RevealText';
 
 type SectionHeadingProps = {
   title: string;
@@ -32,14 +33,15 @@ export default function SectionHeading({
           <span className={clsx('h-px w-8', dark ? 'bg-gold-300/60' : 'bg-gold-500/60')} />
         </p>
       )}
-      <h2
+      <RevealText
+        as="h2"
+        inView
+        text={title}
         className={clsx(
           'font-display font-semibold text-3xl lg:text-5xl leading-tight tracking-tight',
           dark ? 'text-cream' : 'text-neutral-900',
         )}
-      >
-        {title}
-      </h2>
+      />
       {subtitle && (
         <p
           className={clsx(

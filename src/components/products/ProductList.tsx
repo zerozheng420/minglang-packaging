@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import Badge from '@/components/ui/Badge';
+import TiltCard from '@/components/ui/TiltCard';
 import { products, groupProductsByCategory, categoryLabels, type Product } from '@/data/products';
 import { BLUR_PLACEHOLDER } from '@/lib/placeholder';
 
@@ -51,9 +52,10 @@ function ProductCard({
   const hasHoverImage = product.images.length > 1;
 
   return (
+    <TiltCard className="h-full">
     <Link
       href={`/products/${product.slug}`}
-      className="group relative flex flex-col rounded-2xl border border-neutral-200 overflow-hidden hover:border-gold-300 hover:shadow-xl hover:shadow-neutral-900/10 hover:-translate-y-1.5 transition-all duration-500 bg-white"
+      className="group relative flex flex-col rounded-2xl border border-neutral-200 overflow-hidden hover:border-gold-300 hover:shadow-xl hover:shadow-neutral-900/10 bg-white transition-[border-color,box-shadow] duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -103,6 +105,7 @@ function ProductCard({
         </div>
       </div>
     </Link>
+    </TiltCard>
   );
 }
 
