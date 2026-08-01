@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const RECIPIENT_EMAIL = "sales@minglangpackaging.com";
+// Where inquiries are delivered. Override via RECIPIENT_EMAIL env var.
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || "1703058063@qq.com";
+// Sender. Requires the domain to be verified in Resend; override via RESEND_FROM.
+const RESEND_FROM = process.env.RESEND_FROM || "Minglang Packaging <noreply@minglangpackaging.com>";
 
 export async function POST(request: NextRequest) {
   try {
@@ -48,11 +51,13 @@ export async function POST(request: NextRequest) {
     };
 
     // Try sending via Resend, fallback to console log
+    let emailSent = false;
+    let emailError: string | null = null;
     try {
       if (process.env.RESEND_API_KEY) {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-          from: "Minglang Packaging <noreply@minglangpackaging.com>",
+          from: RESEND_FROM,
           to: RECIPIENT_EMAIL,
           subject: `新询价 / New Inquiry from ${inquiryData.name}${inquiryData.company ? ` (${inquiryData.company})` : ""}`,
           html: `
@@ -68,17 +73,22 @@ export async function POST(request: NextRequest) {
             </table>
           `,
         });
+        emailSent = true;
         console.log("[Inquiry] Email sent successfully via Resend");
       } else {
+        emailError = "RESEND_API_KEY not set";
         console.log("[Inquiry] RESEND_API_KEY not set, logging inquiry:", JSON.stringify(inquiryData, null, 2));
       }
-    } catch (emailError) {
-      console.error("[Inquiry] Failed to send email, logging inquiry:", JSON.stringify(inquiryData, null, 2));
+    } catch (err) {
+      emailError = err instanceof Error ? err.message : "Unknown email error";
+      console.error("[Inquiry] Failed to send email:", emailError, JSON.stringify(inquiryData, null, 2));
     }
 
     return NextResponse.json({
       success: true,
       message: "Inquiry submitted successfully. We will respond within 24 hours.",
+      emailSent,
+      emailError,
     });
   } catch {
     return NextResponse.json(
