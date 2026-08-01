@@ -24,9 +24,9 @@ const stats = [
 
 const timeline = [
   { year: "2006", zh: "明朗包装在深圳成立", en: "Minglang Packaging founded in Shenzhen" },
-  { year: "2012", zh: "醒龙包装成立，专注布艺收纳袋", en: "Xinglong Packaging established, focusing on fabric storage bags" },
   { year: "2018", zh: "汇莉达包装成立，拓展礼品包装业务", en: "Huilida Packaging established, expanding into gift packaging" },
   { year: "2022", zh: "工厂升级改造，引进全自动生产线", en: "Factory upgrade with fully automated production lines" },
+  { year: "2025", zh: "醒龙包装成立，专注布艺收纳袋", en: "Xinglong Packaging established, focusing on fabric storage bags" },
   { year: "2026", zh: "服务全球客户，深耕柔性包装20年", en: "Serving global clients, 20 years in flexible packaging" },
 ];
 
